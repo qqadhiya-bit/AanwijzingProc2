@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InJourney Aviation Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=18" />
+  </head>
+  <!--
+  PENGATURAN OPENING (ubah lewat Notepad, TANPA tanda petik, lalu Ctrl+S dan refresh browser dengan Ctrl+F5):
+    data-opening = frames      -> opening lama (frame gambar, dikendalikan scroll)
+                   video-klik  -> foto "Selamat Datang" dulu, video jalan setelah klik/scroll pertama (suara nyala)
+                   video-auto  -> video langsung jalan saat halaman dibuka (tanpa suara, ada tombol untuk menyalakan)
+    data-video   = nama file video di folder yang sama (tanpa spasi), dipakai di mode video-klik dan video-auto
+-->
+<body data-opening=frames data-video=opening.mp4>
+    <main class="welcome-page">
+      <section class="hero" aria-label="Selamat datang">
+        <div class="scene">
+          <div class="hero__image-wrap">
+            <img class="hero__image" src="selamat datang.png" alt="Selamat datang di InJourney Aviation Services" />
+          </div>
+          <canvas class="frame-canvas" role="img" aria-label="Animasi perjalanan keluar gedung, dikendalikan gulir layar"></canvas>
+          <div class="hero__shade"></div>
+          <div class="hero__content">
+            <div class="welcome-copy">
+              <p class="eyebrow">PT INTEGRASI AVIASI SOLUSI</p>
+              <h1>SELAMAT<br /><em>DATANG</em></h1>
+              <div class="scroll-cue"><span></span></div>
+            </div>
+          </div>
+          <div class="end-clouds" aria-hidden="true">
+            <div class="cloud" style="--size:380px; --top:6%; --op:0.55; --dur:34s; --start:15; --blur:1.5px; --bob:10px; --bobdur:7s;"></div>
+            <div class="cloud" style="--size:260px; --top:26%; --op:0.45; --dur:44s; --start:60; --blur:1.5px; --bob:10px; --bobdur:7s;"></div>
+            <div class="cloud" style="--size:460px; --top:46%; --op:0.4; --dur:30s; --start:85; --blur:2px; --bob:10px; --bobdur:7s;"></div>
+            <div class="cloud" style="--size:300px; --top:66%; --op:0.5; --dur:40s; --start:35; --blur:1.5px; --bob:10px; --bobdur:7s;"></div>
+            <div class="cloud" style="--size:220px; --top:14%; --op:0.4; --dur:52s; --start:75; --blur:2px; --bob:10px; --bobdur:7s;"></div>
+            <div class="cloud" style="--size:420px; --top:78%; --op:0.35; --dur:36s; --start:5; --blur:2px; --bob:10px; --bobdur:7s;"></div>
+          </div>
+          <div class="mendung" aria-hidden="true">
+            <div class="mendung__base"></div>
+            <div class="mendung__sky"></div>
+            <div class="mendung__clouds">
+            <div class="cloud" style="--size:720px; --top:-6%; --op:.5; --dur:38s; --start:10; --blur:16px; --bob:16px; --bobdur:8s;"></div>
+            <div class="cloud" style="--size:560px; --top:12%; --op:.5; --dur:30s; --start:55; --blur:16px; --bob:14px; --bobdur:7s;"></div>
+            <div class="cloud" style="--size:820px; --top:26%; --op:.5; --dur:42s; --start:80; --blur:16px; --bob:18px; --bobdur:9s;"></div>
+            <div class="cloud" style="--size:520px; --top:-2%; --op:.5; --dur:26s; --start:35; --blur:16px; --bob:12px; --bobdur:6s;"></div>
+            <div class="cloud" style="--size:700px; --top:40%; --op:.5; --dur:34s; --start:20; --blur:16px; --bob:16px; --bobdur:8s;"></div>
+            <div class="cloud" style="--size:600px; --top:6%; --op:.5; --dur:28s; --start:70; --blur:16px; --bob:14px; --bobdur:7s;"></div>
+            </div>
+            <div class="mendung__vignette"></div>
+          </div>
+          <div class="theme-choice">
+            <p class="theme-choice__label">Pilih Tampilan</p>
+            <div class="theme-switch" role="group" aria-label="Pilih Cuaca" data-active="light">
+              <button type="button" data-theme="Cerah" aria-pressed="true" aria-label="Cerah" title="Cerah">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+                <span class="sr-only">Cerah</span>
+              </button>
+              <button type="button" data-theme="Mendung" aria-pressed="false" aria-label="Mendung" title="Mendung">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+                <span class="sr-only">Mendung</span>
+              </button>
+            </div>
+            <p class="theme-choice__hint"><span>    </span></p>
+          </div>
+          <div class="hero-stamp" aria-hidden="true"><span></span><span></span></div>
+          <button class="sound-toggle is-hint" type="button" aria-pressed="false" aria-label="Nyalakan suara" title="Nyalakan suara">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path class="sound-waves" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="sound-slash" d="M4 4l16 16"/></svg>
+          </button>
+          <button class="fullscreen-toggle" type="button" aria-label="Aktifkan layar penuh" title="Layar penuh">⛶</button>
+          <div class="frame-loader" aria-hidden="true"><span></span></div>
+        </div>
+      </section>
+      <section class="aanwijzing-section" aria-labelledby="aanwijzing-title">
+        <div class="section-clouds" aria-hidden="true">
+          <div class="cloud" style="--size:240px; --top:4%; --op:0.3; --dur:48s; --start:20; --blur:0.6px;"></div>
+          <div class="cloud" style="--size:170px; --top:62%; --op:0.25; --dur:60s; --start:65; --blur:1px;"></div>
+        </div>
+        <div class="aanwijzing-header">
+          <h2 id="aanwijzing-title">AANWIJZING</h2>
+          <p class="aanwijzing-title">PENGADAAN JASA PENYEDIAAN PERALATAN FASILITAS KEAMANAN PENERBANGAN DI LINGKUNGAN PT INTEGRASI AVIASI SOLUSI</p>
+        </div>
+        <div class="aanwijzing-video-card">
+          <video controls playsinline preload="metadata" poster="aanwijzing-poster.jpg" aria-label="Video Aanwijzing">
+            <source src="Aanwijzing.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </section>
+      <section class="documents-section" aria-labelledby="documents-title">
+        <div class="section-clouds" aria-hidden="true">
+          <div class="cloud" style="--size:210px; --top:2%; --op:0.28; --dur:52s; --start:75; --blur:0.6px;"></div>
+          <div class="cloud" style="--size:160px; --top:64%; --op:0.24; --dur:64s; --start:35; --blur:1px;"></div>
+        </div>
+                <div class="document-search-control">
+          <button class="document-tool document-tool--search" type="button" aria-label="Buka pencarian">🔍︎</button>
+          <input class="document-search" list="document-options" type="search" placeholder="Cari dokumen..." aria-label="Cari dokumen" />
+        </div>
+        <button class="qr-toggle" type="button" aria-label="Tampilkan QR untuk buka di ponsel" aria-expanded="false" aria-controls="qr-popover" title="Buka di ponsel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h11"/><path d="M10 7l5 5-5 5"/><path d="M20 5v14"/></svg>
+        </button>
+        <div class="qr-popover" id="qr-popover" role="dialog" aria-label="QR untuk buka di ponsel">
+          <h4>Akses Dokumen:</h4>
+          <img src="qr-dokumen.png" alt="Akses Semua Dokumen" />
+          <p>bit.ly/dokumen-aanwijzing</p>
+        </div>
+        <div class="documents-heading">
+          <h2 id="documents-title">Dokumen Pemilihan</h2>
+        </div>
+        <div class="documents-carousel">
+          <button class="document-nav document-nav--prev" type="button" aria-label="Dokumen sebelumnya">
+            <span class="document-peek-index"></span><span class="document-peek-name"></span>
+          </button>
+          <div class="document-slide">
+            <div class="document-topline">
+              <div class="document-meta"><span class="document-index">01 / 12</span><h3></h3></div>
+            </div>
+            <div class="pdf-preview"><div class="pdf-viewer-stack"></div></div>
+          </div>
+          <button class="document-nav document-nav--next" type="button" aria-label="Dokumen berikutnya">
+            <span class="document-peek-index"></span><span class="document-peek-name"></span>
+          </button>
+        </div>
+        <datalist id="document-options">
+          <option value="Kerangka Acuan Kerja (KAK)"></option><option value="Instruksi Kepada Peserta (IKP)"></option><option value="Bill Of Quantity (BOQ)"></option><option value="Surat Undangan Aanwijzing"></option><option value="Surat Pernyataan Kesanggupan Pekerjaan"></option><option value="Draft HOA"></option><option value="Draft SSUK"></option><option value="Template Pakta Integritas"></option><option value="Template Keterangan Tidak Pailit"></option><option value="Template Pernyataan Capaian TKDN"></option><option value="Template Pernyataan Anti Penyuapan"></option><option value="Template Surat Penawaran Harga"></option>
+        </datalist>
+      </section>
+      <section class="feedback-section" aria-labelledby="feedback-title">
+        <div class="feedback-stage">
+          <div class="sky-background" aria-hidden="true">
+            <div class="sky-clouds">
+              <div class="cloud" style="--size:110px; --top:8%; --op:0.5; --dur:62s; --start:10; --blur:1.6px; --bob:8px; --bobdur:7s;"></div>
+              <div class="cloud" style="--size:90px; --top:30%; --op:0.42; --dur:70s; --start:55; --blur:1.8px; --bob:6px; --bobdur:8s;"></div>
+              <div class="cloud" style="--size:120px; --top:52%; --op:0.4; --dur:66s; --start:80; --blur:1.5px; --bob:8px; --bobdur:7s;"></div>
+              <div class="cloud" style="--size:100px; --top:74%; --op:0.36; --dur:72s; --start:30; --blur:1.8px; --bob:6px; --bobdur:9s;"></div>
+              <div class="cloud" style="--size:210px; --top:4%; --op:0.78; --dur:36s; --start:40; --blur:0.6px; --bob:12px; --bobdur:6s;"></div>
+              <div class="cloud" style="--size:190px; --top:36%; --op:0.68; --dur:40s; --start:85; --blur:0.6px; --bob:12px; --bobdur:7s;"></div>
+              <div class="cloud" style="--size:230px; --top:58%; --op:0.6; --dur:34s; --start:15; --blur:0.8px; --bob:14px; --bobdur:6s;"></div>
+              <div class="cloud" style="--size:200px; --top:80%; --op:0.5; --dur:38s; --start:65; --blur:0.8px; --bob:12px; --bobdur:7s;"></div>
+              <div class="cloud" style="--size:340px; --top:16%; --op:0.95; --dur:24s; --start:70; --blur:0px; --bob:18px; --bobdur:5s;"></div>
+              <div class="cloud" style="--size:320px; --top:46%; --op:0.92; --dur:26s; --start:25; --blur:0px; --bob:16px; --bobdur:5.5s;"></div>
+              <div class="cloud" style="--size:380px; --top:66%; --op:0.9; --dur:22s; --start:50; --blur:0px; --bob:20px; --bobdur:5s;"></div>
+              <div class="cloud" style="--size:460px; --top:84%; --op:0.55; --dur:17s; --start:5; --blur:5px; --bob:22px; --bobdur:4.5s;"></div>
+              <div class="cloud" style="--size:520px; --top:-6%; --op:0.5; --dur:15s; --start:90; --blur:6px; --bob:20px; --bobdur:4.5s;"></div>
+            </div>
+          </div>
+          <div class="feedback-composition">
+            <div class="feedback-size-controls" role="group" aria-label="Atur ukuran panel masukan">
+              <button class="feedback-size-button feedback-size-button--decrease" type="button" aria-label="Perkecil panel masukan" title="Perkecil panel">&minus;</button>
+              <output class="feedback-size-value" aria-live="polite">100%</output>
+              <button class="feedback-size-button feedback-size-button--increase" type="button" aria-label="Perbesar panel masukan" title="Perbesar panel">+</button>
+            </div>
+            <div class="feedback-content" data-size="4">
+              <p class="feedback-eyebrow">Feedback atas Penjelasan Aanwijzing </p>
+              <h2 id="feedback-title">Ada Masukan atau Ingin Menilai Sesi Ini?</h2>
+              <img class="qr-image" src="qr-feedback.png" alt="Kode QR untuk memberikan masukan atau menilai sesi" />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="speech-data.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
